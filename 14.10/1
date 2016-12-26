@@ -1,0 +1,29 @@
+//Пользователь вводит с клавиатуры сначала число M, затем число N. Программа должна вывести в консоль значение выражения 1^N + 2^N + ... + M^N. Тест: M = 5, N = 2, результат : 55
+
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int M;
+	int N;
+
+	{
+		printf("VVedite M ");
+		cin >> M;
+		printf("VVedite N ");
+		cin >> N;
+
+		int summ = 0;
+		for (int i = 1; i <= M; i++)
+		{
+			summ = summ + pow(i, N);
+		}
+		cout << "Summ = " << summ;
+	}
+
+	system("pause");
+	return 0;
+}
