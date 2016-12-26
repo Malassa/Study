@@ -1,0 +1,30 @@
+//Найдите произведение цифр трёхзначного числа
+
+#include "stdafx.h"
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	int m = 1;
+	int number = 0;
+
+	cout << "Введите трехзначное число" << endl;
+		cin >> number;
+
+		if ((number>999) || (number < 100)) //проверка на трехзначное число 
+		{
+			cout << "Ошибка" << endl;
+		}
+	
+	for (int i = 1; i <= 3; i++)
+	{
+		m = m*(number % 10);
+		number = number / 10;
+	}
+	cout << m << endl;
+
+	system("pause");
+	return 0;
+}
