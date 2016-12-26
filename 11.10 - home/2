@@ -1,0 +1,22 @@
+//Заполнить массив из 20-ти элементов нечётными числами от 1 до 39.
+
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int arr[21];
+	int n = 1;
+	for (int i = 1; i <= 20; i++)
+	{
+		arr[i] = n;
+		n += 2;
+		cout << arr[i] << " ";
+	}
+
+	system("pause");
+
+	return 0;
+}
