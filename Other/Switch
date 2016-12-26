@@ -1,0 +1,27 @@
+//Это было где-то в начале семестра
+
+#include "stdafx.h"
+#include <iostream>
+using namespace std;
+
+int _tmain()
+{
+	char a;
+	cin >> a;
+	switch (a)
+	{
+	case '1': printf("%C", a);
+		break;
+	case '2': printf("%C", a);
+		break;
+	case '3': printf("%C", a);
+		break;
+	case '4': printf("%C", a);
+		break;
+	case '5': printf("%C", a);
+		break;
+	default: printf("Error");
+	}
+	system("pause");
+	return 0;
+}
