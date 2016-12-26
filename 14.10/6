@@ -1,0 +1,44 @@
+//Пользователь вводит с клавиатуры целое число N. Затем программа спрашивает, сколько разрядов числа показать. Пользователь вводит число разрядов m. 
+//Программа должна вернуть число, содержащее m первых цифр числа N. Тест: N = 4242549, m = 5, результат: 42425.
+
+#include "stdafx.h" 
+#include <iostream> 
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+
+	int N, M;
+
+	cout << "Введите целое число" << endl;
+	cin >> N;
+
+	cout << "Сколько разрядов числа показать?" << endl;
+	cin >> M;
+
+	int M1 = 0;
+	int N1 = N;
+
+	while (N > 0)
+	{
+		N = N / 10;
+		M1++;
+	}
+
+	if (M > M1)
+	{
+		cout << "Ошибка" << endl;
+
+		system("pause");
+		return 0;
+	}
+
+	M1 = M1 - M;
+	int del = pow(10, M1);
+	N1 = N1 / del;
+	cout << N1 << endl;
+
+	system("pause");
+	return 0;
+}
