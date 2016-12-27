@@ -1,0 +1,68 @@
+//Объявите указатель на массив типа double и предложите пользователю выбрать его размер. 
+//Далее напишите четыре функции : первая должна выделить память для массива, вторая — заполнить ячейки данными, третья — показать данные на экран, четвертая — освободить занимаемую память.
+//Программа должна предлагать пользователю продолжать работу(создавать новые динамические массивы) или выйти из программы.
+
+#include "stdafx.h"
+#include <iostream>
+#include <ctime>
+
+using namespace std;
+
+double* giveMem(double* startPtr, int sizeofArr);
+void zapArr(double* ptrArr, int sizeofArr);
+void showArr(double* ptrArr, int sizeofArr);
+double* freeMem(double* ptrArr);
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+
+	double* pArrFF = 0;
+	char userAnswer = 0;
+
+	do
+	{
+		int sizeofArray = 0;
+		cout << "Задайте размер массива: ";
+		cin >> sizeofArray;
+
+		pArrFF = giveMem(pArrFF, sizeofArray);
+		zapArr(pArrFF, sizeofArray);
+		showArr(pArrFF, sizeofArray);
+		pArrFF = freeMem(pArrFF);
+
+		cout << "\n Для того чтобы продолжить, нажмите (1). Чтобывыйти, нажмите (0): ";
+		cin >> userAnswer;
+	} while (userAnswer != '0');
+
+	return 0;
+}
+
+double* giveMem(double* ptrArr, int sizeofArr)
+{
+	ptrArr = new double[sizeofArr];
+	return ptrArr;
+}
+void zapArr(double* ptrArr, int sizeofArr)
+{
+	for (int i = 0; i<sizeofArr; i++)
+	{
+		ptrArr[i] = (i + 1) * 0.2;
+	}
+}
+
+void showArr(double* ptrArr, int sizeofArr)
+{
+	for (int i = 0; i<sizeofArr; i++)
+	{
+		cout << ptrArr[i] << "  ";
+	}
+	cout << endl;
+}
+
+double*  freeMem(double* ptrArr)
+{
+	delete[] ptrArr;
+	ptrArr = 0;
+	return ptrArr;
+}
