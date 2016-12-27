@@ -1,0 +1,86 @@
+#include "stdafx.h"
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+struct node
+{
+	string d1;
+	string d2;
+	node *q;
+};
+
+node * primaryInitialization(string d);
+void add(node **pend, string d1, string d2);
+string pachif(node **pbegin);
+
+int main()
+{
+	int t;
+	setlocale(LC_ALL, "rus");
+
+	string string1;
+	cout << "Введите количество учеников" << endl;
+	cin >> t;
+	string ptrArr[6];
+
+	cout << "Введите класс от 5 до 9 и фамилию ученика" << endl;
+
+	for (int i = 0; i< t; i++)
+
+	{
+		cin >> string1;
+		ptrArr[i] = string1;
+	}
+
+	node *pbegin = primaryInitialization("Список учеников");
+	node *pend = pbegin;
+
+	for (int j = 5; j <= 9; j++)
+	{
+		for (int i = 0; i< t; i++)
+		{
+			string1 = ptrArr[i];
+			if (string1.substr(0, 1) == to_string(j))
+			{
+				string1.erase(0, 2);
+				add(&pend, to_string(j), string1);
+			}
+		}
+	}
+	while (pbegin)
+		cout << pachif(&pbegin) << endl;
+	system("pause");
+	return 0;
+}
+
+node * primaryInitialization(string d)
+{
+	node *pv = new node;
+	pv->d1 = d;
+	pv->d2 = "";
+	pv->q = 0;
+	return pv;
+}
+
+void add(node **pend, string d1, string d2)
+{
+	node *pv = new node;
+	pv->d1 = d1;
+	pv->d2 = d2;
+	pv->q = 0;
+	(*pend)->q = pv;
+	*pend = pv;
+}
+
+string pachif(node **pbegin)
+{
+	string asd = (*pbegin)->d1;
+	string asdd1 = (*pbegin)->d2;
+	string asdd2 = asd + " " + asdd1;
+	node *pv = *pbegin;
+	*pbegin = (*pbegin)->q;
+	delete pv;
+	return asdd2;
+}
