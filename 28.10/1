@@ -1,0 +1,85 @@
+//Необходимо объявить квадратную матрицу и поменять местами строку с максимальным элементом на главной диагонали со строкой под номером n.
+//Номер n вводит пользователь с клавиатуры.
+
+#include "stdafx.h"
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+const unsigned int gtrM1 = 5;
+const unsigned int gtrM2 = 5;
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+
+	int **ptrArr;
+
+	ptrArr = new int *[gtrM1];
+	for (int i = 0; i<gtrM1; i++)
+	{
+		ptrArr[i] = new int[gtrM2];
+	}
+
+	for (int i = 0; i<gtrM1; i++)
+	{
+		for (int j = 0; j <gtrM2; j++)
+		{
+			ptrArr[i][j] = (i + 1) * 10 + (j + 1);
+		}
+	}
+
+	for (int i = 0; i<gtrM1; i++)
+	{
+		for (int j = 0; j <gtrM2; j++)
+		{
+			cout << setw(4) << ptrArr[i][j];
+		}
+		cout << endl;
+	}
+	int teg = 0;
+	int y = 0;
+	int luo = 0;
+
+	for (int i = 0; i<gtrM1; i++)
+	{
+		for (int j = 0; j <gtrM2; j++)
+		{
+			if ((i == j) && (ptrArr[i][j]>teg))
+			{
+				y = i;
+			}
+		}
+	}
+
+	int a = y;
+	cout << "Введите номер строки" << endl;
+	cin >> a;
+	a--;
+
+	for (int j = 0; j <gtrM2; j++)
+	{
+		luo = ptrArr[y][j];
+		ptrArr[y][j] = ptrArr[a][j];
+		ptrArr[a][j] = luo;
+	}
+
+	for (int i = 0; i<gtrM1; i++)
+	{
+		for (int j = 0; j <gtrM2; j++)
+		{
+			cout << setw(4) << ptrArr[i][j];
+		}
+		cout << endl;
+	}
+
+	for (int i = 0; i<gtrM1; i++)
+	{
+		delete[]ptrArr[i];
+	}
+	delete[]ptrArr;
+
+	system("pause");
+	return 0;
+}
