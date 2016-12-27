@@ -1,0 +1,44 @@
+//Объявите указатель на массив типа int и выделите память для 12 элементов.
+//Необходимо написать функцию, которая поменяет значения четных и нечетных ячеек массива.
+//В результате выполнения программы выведите на экран значения массива до и после выполнения функции.
+
+#include "stdafx.h" 
+#include <iostream>
+#include <ctime>
+
+using namespace std;
+
+
+int main()
+{
+	int chicl = 12;
+	int* ptrArr;
+	ptrArr = new int[chicl];
+
+	srand(time(NULL));
+	for (int i = 0; i<chicl; i++)
+	{
+		ptrArr[i] = rand() % 12 + 1;
+	}
+
+	for (int i = 0; i<chicl; i++)
+		cout << ptrArr[i] << " ";
+	cout << endl;
+	int asd;
+
+	for (int j = 1; j<chicl; j += 2)
+	{
+		if (j<chicl)
+		{
+			asd = ptrArr[j];
+			ptrArr[j] = ptrArr[j - 1];
+			ptrArr[j - 1] = asd;
+		}
+	}
+
+	for (int i = 0; i<chicl; i++)
+		cout << ptrArr[i] << " ";
+	cout << endl;
+	system ("pause");
+	return 0;
+}
