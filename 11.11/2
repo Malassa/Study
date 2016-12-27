@@ -1,0 +1,76 @@
+#include "stdafx.h"
+#include<iostream>
+#include <ctime>
+
+using namespace std;
+
+struct node
+{
+	int done;
+	node *q;
+};
+
+node * primaryInitialization(int done);
+void add(node **pend, int done);
+int pachif(node **pbegin);
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	int t;
+	cout << "Введите количество элементов последовательности" << endl;
+	cin >> t;
+	int*ptrArr;
+	ptrArr = new int[t];
+
+	srand(time(NULL));
+	ptrArr[1] = rand() % 100;
+	cout << ptrArr[1] << " ";
+	for (int i = 2; i<t; i++)
+	{
+		ptrArr[i] = rand() % 100 - 50;
+		cout << ptrArr[i] << " ";
+	}
+	cout << endl;
+	node *pbegin = primaryInitialization(ptrArr[1]);
+	node *pend = pbegin;
+	for (int j = 2; j<t; j++)
+
+	{
+		if (ptrArr[j]>0)
+		{
+			add(&pend, ptrArr[j]);
+		}
+	}
+
+	while (pbegin)
+		cout << pachif(&pbegin) << ' ';
+	system("pause");
+	return 0;
+}
+
+node * primaryInitialization(int done)
+{
+	node *pv = new node;
+	pv->done = done;
+	pv->q = 0;
+	return pv;
+}
+
+void add(node **pend, int done)
+{
+	node *pv = new node;
+	pv->done = done;
+	pv->q = 0;
+	(*pend)->q = pv;
+	*pend = pv;
+}
+
+int pachif(node **pbegin)
+{
+	int asd = (*pbegin)->done;
+	node *pv = *pbegin;
+	*pbegin = (*pbegin)->q;
+	delete pv;
+	return asd;
+}
