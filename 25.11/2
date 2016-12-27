@@ -1,0 +1,63 @@
+#include "stdafx.h"
+#include <iostream>
+
+using namespace std;
+
+class urav
+{ public:
+
+	int a;
+	int b;
+	int c;
+	float fff;
+	float p1;
+	float p2;
+	urav(int a, int b, int c)
+
+	{
+		this->a = a;
+		this->b = b;
+		this->c = c;
+		this->fff = 0;
+		this->p1 = 0;
+		this->p2 = 0;
+	}
+
+	float getfff()
+	{
+		this->fff = (this->b)*(this->b) - 4 * (this->a)*(this->c);
+		return this->fff;
+	}
+	float getp1()
+	{
+		if ((this->fff) < 0) return 0;
+		this->p1 = ((this->b)*(-1) + sqrt(this->fff)) / 2 / this->a;
+		return this->p1;
+	}
+	float getp2()
+	{
+		if ((this->fff) < 0) return 0;
+		this->p2 = ((this->b)*(-1) - sqrt(this->fff)) / 2 / this->a;
+		return this->p2;
+	} };
+
+int main()
+
+{
+	int a;
+	int b;
+	int c;
+	setlocale(LC_ALL, "rus");
+	cin >> a >> b >> c;
+	urav newurav(a, b, c);
+	if (newurav.getfff() < 0)
+
+	{
+		cout << "Действительных корней нет";
+		return 0;
+	}
+	cout << "Дискриминант = " << newurav.getfff() << " p1= " << newurav.getp1() << " p2=" << newurav.getp2(); //вывод корней
+
+	system("pause");
+	return 0;
+}
