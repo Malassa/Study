@@ -1,0 +1,112 @@
+#include "stdafx.h" 
+#include <iostream>
+
+using namespace std;
+
+class time
+
+{
+public:
+	int hou;
+	int min;
+	int sec;
+	time(int h, int m, int s)
+
+	{
+		this->hou = h;
+		this->min = m;
+		this->sec = s;
+	}
+
+	void settime(int hou, int min, int sec)
+
+	{
+		this->hou = (hou >= 0 && hou<24) ? hou : 0;
+		this->min = (min >= 0 && min<60) ? min : 0;
+		this->sec = (sec >= 0 && sec<60) ? sec : 0;
+	}
+
+	int gethou()
+	{
+		return this->hou;
+	}
+
+	int getmin()
+	{
+		return this->min;
+	}
+
+	int getsec()
+	{
+		return this->sec;
+	}
+
+	void timeAPM()
+	{
+		cout << (this->hou == 0 || this->hou == 12 ? 12 : this->hou % 12);
+		cout << ":" << (this->min <10 ? "0" : "") << this->min;
+		cout << ":" << (this->sec <10 ? "0" : "") << this->sec;
+		cout << (this->hou<12 ? " AM" : " PM") << endl;
+	}
+};
+
+int main()
+
+{
+	setlocale(LC_ALL, "rus");
+	int h;
+	int m;
+	int s;
+	cout << "Введите время 1" << endl;
+	cin >> h >> m >> s;
+
+	time newtime(0, 0, 0);
+	newtime.settime(h, m, s);
+
+	cout << "Введите время 2" << endl;
+	cin >> h >> m >> s;
+
+	time newtime2(0, 0, 0);
+	newtime2.settime(h, m, s);
+	time newtemp(0, 0, 0);
+
+	if ((newtime2.gethou()<newtime.gethou()) || ((newtime2.gethou() == newtime.gethou()) && ((newtime2.getmin()<newtime.getmin()))) || (((newtime2.gethou() == newtime.gethou()) && ((newtime2.getmin() == newtime.getmin())) && ((newtime2.getsec()<newtime.getsec())))))
+
+	{
+		newtemp.settime(newtime2.gethou(), newtime2.getmin(), newtime2.getsec());
+		newtime2.settime(newtime.gethou(), newtime.getmin(), newtime.getsec());
+		newtime.settime(newtemp.gethou(), newtemp.getmin(), newtemp.getsec());
+	}
+
+	time newtime3(0, 0, 0);
+	int joi = 0;
+	int s3 = 0;
+	int m3 = 0;
+	int h3 = 0;
+	s3 = newtime2.getsec() - newtime.getsec();
+	if (s3 < 0)
+	{
+		s3 += 60; joi = 1;
+	}
+
+	m3 = newtime2.getmin() - newtime.getmin() - joi;
+	joi = 0;
+	if (m3 < 0)
+	{
+		m3 += 60;
+		joi = 1;
+	}
+	h3 = newtime2.gethou() - newtime.gethou() - joi;
+	newtime3.settime(abs(h3), abs(m3), abs(s3));
+	cout << "Меньшее время" << endl;
+
+	newtime.timeAPM();
+	cout << "Большее время" << endl;
+
+	newtime2.timeAPM();
+	cout << "Разница во времени =";
+	newtime3.timeAPM();
+
+	system("pause");
+	return 0;
+}
