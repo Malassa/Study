@@ -11,7 +11,7 @@ struct node
 
 node *primaryInitialization(char done);
 void push(node **top, char done);
-char sa(node **top);
+char pop(node **top);
 
 int main()
 
@@ -30,7 +30,7 @@ int main()
 	node *top = primaryInitialization(ptrArr[0]);
 
 	for (int i = 1; i< t; i++) push(&top, ptrArr[i]);
-	while (top) cout << sa(&top) << ' ';
+	while (top) cout << pop(&top) << ' ';
 
 	system("pause");
 	return 0;
